@@ -2,6 +2,7 @@ package file
 
 import (
 	"os"
+	"strings"
 )
 
 
@@ -20,5 +21,13 @@ func NewFileHelper() *FileHelper{
 
 //Wrapper Method for os.Open so that we can mock/test this particular functionality.
 func (svc *FileHelper) GetFileByAbsPath(absFilePath string) (*os.File, error){
-	return os.Open(absFilePath)
+	cleanAbsFilePath := svc.ReplaceSlashesWithOsSpecificPathSeparator(absFilePath)
+	return os.Open(cleanAbsFilePath)
+}
+
+func (svc *FileHelper) ReplaceSlashesWithOsSpecificPathSeparator(path string) string {
+	fixedPath1 := strings.Replace(path, "\\", string(os.PathSeparator), -1)
+	fixedPath2 := strings.Replace(fixedPath1, "/", string(os.PathSeparator), -1)
+
+	return fixedPath2
 }

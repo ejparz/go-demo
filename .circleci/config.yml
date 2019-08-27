@@ -8,6 +8,25 @@ commands:
     steps:
       - run: go build ./...
   
+  run-unit-tests: 
+    steps:
+      - run: 
+           name: Run Integration tests
+           command: |
+            set +e
+            cd /go/src/go-demo/
+            mkdir -p test_results/unit
+            gotestsum  --format standard-verbose --junitfile test_results/unit/test_run.xml -- ./src/... --json -v 2>&1 | tee unitTestResults
+            exit 0
+      - run: cat /go/src/go-demo/unitTestResults
+      - store_test_results:
+          path: /go/src/go-demo/test_results
+      - run:  
+          name: Check Unit Test results 
+          command: |
+            grep -q 'FAIL' /go/src/go-demo/unitTestResults && exit 1
+            exit 0
+  
   run-integration-tests: 
     steps:
       - run: 
@@ -16,7 +35,7 @@ commands:
             set +e
             cd /go/src/go-demo/
             mkdir -p test_results/integration
-            gotestsum  --format standard-verbose --junitfile test_results/integration/test_run.xml -- ./test_integrations/... --json -v 2>&1 | tee integrationTestResults
+            gotestsum  --format standard-verbose --junitfile test_results/integration/test_run.xml -- ./test/... --json -v 2>&1 | tee integrationTestResults
             exit 0
       - run: cat /go/src/go-demo/integrationTestResults
       - store_test_results:
@@ -37,6 +56,7 @@ jobs:
     steps:
       - checkout
       - build-code
+      - run-unit-tests
       - run-integration-tests 
 
 workflows:
