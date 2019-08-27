@@ -14,17 +14,17 @@ commands:
            name: Run Integration tests
            command: |
             set +e
-            cd /go/src/go-demo
+            cd /go/src/go-demo/
             mkdir -p test_results/integration
-            gotestsum --format standard-verbose --junitfile test_results/integration/test_run.xml -- ./... --json -v 2>&1 | tee integrationTestResults
+            gotestsum ./test_integrations/... --format standard-verbose --junitfile test_results/integration/test_run.xml -- ./... --json -v 2>&1 | tee integrationTestResults
             exit 0
-      - run: cat /go/src/web-tests/integrationTestResults
+      - run: cat /go/src/go-demo/integrationTestResults
       - store_test_results:
-          path: /go/src/web-tests/test_results
+          path: /go/src/go-demo/test_results
       - run:  
           name: Check Integration Test results 
           command: |
-            grep -q 'FAIL' /go/src/web-tests/integrationTestResults && exit 1
+            grep -q 'FAIL' /go/src/go-demo/integrationTestResults && exit 1
             exit 0
      
 jobs:
