@@ -16,7 +16,7 @@ commands:
             set +e
             cd /go/src/go-demo/
             mkdir -p test_results/integration
-            gotestsum ./test_integrations/... --format standard-verbose --junitfile test_results/integration/test_run.xml -- ./... --json -v 2>&1 | tee integrationTestResults
+            gotestsum  --format standard-verbose --junitfile test_results/integration/test_run.xml -- ./test_integrations/... --json -v 2>&1 | tee integrationTestResults
             exit 0
       - run: cat /go/src/go-demo/integrationTestResults
       - store_test_results:
