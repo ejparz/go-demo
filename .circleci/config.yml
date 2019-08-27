@@ -8,7 +8,7 @@ commands:
     steps:
       - run: go build ./...
   
-  run-integraton-tests: 
+  run-integration-tests: 
     steps:
       - run: 
            name: Run Integration tests
@@ -27,7 +27,6 @@ commands:
             grep -q 'FAIL' /go/src/web-tests/integrationTestResults && exit 1
             exit 0
      
-
 jobs:
   build:
     docker:
