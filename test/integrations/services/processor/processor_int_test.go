@@ -1,20 +1,20 @@
 package file
 
 import (
+	"fmt"
 	"go-demo/src/services/processor"
-	"testing"
 	"go-demo/src/services/test_helper"
 	"os"
-	"fmt"
+	"testing"
 )
 
 var p *processor.Processor
 
-func basicSetup(){
+func basicSetup() {
 	p = processor.NewProcessor()
 }
 
-func TestPrintStudentAverages(t *testing.T){
+func TestPrintStudentAverages(t *testing.T) {
 	basicSetup()
 
 	wd, err := os.Getwd()
@@ -22,6 +22,6 @@ func TestPrintStudentAverages(t *testing.T){
 
 	println(fmt.Sprintf("Working Dir %v", wd))
 
-	 err = p.PrintStudentAverages(fmt.Sprintf("%v\\..\\..\\..\\data\\grades.csv", wd ))
+	err = p.PrintStudentAverages(fmt.Sprintf("%v\\..\\..\\..\\data\\grades.csv", wd))
 	test_helper.AssertEqual(err, nil)
 }
