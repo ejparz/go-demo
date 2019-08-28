@@ -52,6 +52,8 @@ func (svc *Processor) PrintStudentAverages(filePath string) error{
 		return err
 	}
 
+	defer svc.fileHelper.CloseFile(file)
+
 	lines, err := svc.csvReader.ReadCsv(file)
 	if(err != nil){
 		return err
