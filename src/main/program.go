@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"go-demo/src/services/processor"
 )
 
