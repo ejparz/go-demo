@@ -6,7 +6,7 @@ import (
 )
 
 type CsvReaderInterface interface {
-
+	ReadCsv(f *os.File) ([][]string, error)
 }
 
 type CsvReader struct {
