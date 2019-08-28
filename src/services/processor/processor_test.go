@@ -12,6 +12,7 @@ import (
 
 	"os"
 	"testing"
+	"errors"
 )
 
 var fileHelper *file.MockFileHelper
@@ -89,4 +90,16 @@ func TestPrintStudentAverages(t *testing.T) {
 	test_helper.AssertEqual(gradePrinter.PrintAvgsByNameAscCount, 1)
 
 	test_helper.AssertEqual(fileHelper.CloseFileCount, 1)
+}
+
+func TestPrintStudentAverages_CsvParseError(t *testing.T) {
+	setUpDependencies()
+	errMsg := "Error Parsing grade!"
+	csvReader.Err = errors.New(errMsg)
+
+	createSvc()
+
+	err := p.PrintStudentAverages("grades.csv")
+
+	test_helper.AssertEqual(err.Error(), errMsg)
 }
