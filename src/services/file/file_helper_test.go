@@ -1,8 +1,8 @@
 package file_test
 
 import (
-	"go-demo/src/file"
-	"go-demo/src/test_helper"
+	"go-demo/src/services/file"
+	"go-demo/src/services/test_helper"
 	"os"
 	"testing"
 	"fmt"
