@@ -67,7 +67,7 @@ func (svc *Processor) PrintStudentAverages(filePath string) error{
 		return err
 	}
 
-	svc.gradePrinter.PrintAvgsRaw(avgMap)
+	svc.gradePrinter.PrintAvgsByNameAsc(avgMap)
 
 	return nil
 }
