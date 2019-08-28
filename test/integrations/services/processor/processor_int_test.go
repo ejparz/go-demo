@@ -14,7 +14,7 @@ func basicSetup(){
 	p = processor.NewProcessor()
 }
 
-func TestReadFileFromAbsPath(t *testing.T){
+func TestPrintStudentAverages(t *testing.T){
 	basicSetup()
 
 	wd, err := os.Getwd()
