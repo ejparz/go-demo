@@ -1,9 +1,9 @@
 package file
 
 import (
-	"go-demo/src/file"
+	"go-demo/src/services/file"
 	"testing"
-	"go-demo/src/test_helper"
+	"go-demo/src/services/test_helper"
 	"os"
 	"fmt"
 )
@@ -22,7 +22,7 @@ func TestReadFileFromAbsPath(t *testing.T){
 
 	println(fmt.Sprintf("Working Dir %v", wd))
 
-	f, err := fileHelper.GetFileByAbsPath(fmt.Sprintf("%v\\..\\..\\data\\grades.csv", wd ))
+	f, err := fileHelper.GetFileByAbsPath(fmt.Sprintf("%v\\..\\..\\..\\data\\grades.csv", wd ))
 	test_helper.AssertEqual(err, nil)
 
 	defer f.Close()

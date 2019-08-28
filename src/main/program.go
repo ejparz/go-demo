@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"go-demo/src/services/processor"
 )
 
 func main(){
-	fmt.Println("Hello World!")
+	p := processor.NewProcessor()
+	p.PrintStudentAverages()
 }
 

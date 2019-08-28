@@ -11,7 +11,7 @@ commands:
   run-unit-tests: 
     steps:
       - run: 
-           name: Run Integration tests
+           name: Run Unit tests
            command: |
             set +e
             cd /go/src/go-demo/

@@ -8,6 +8,7 @@ import (
 
 type FileHelperInterface interface {
 	GetFileByAbsPath(absFilePath string) (*os.File, error)
+	CloseFile(*os.File)
 }
 
 
@@ -30,4 +31,8 @@ func (svc *FileHelper) ReplaceSlashesWithOsSpecificPathSeparator(path string) st
 	fixedPath2 := strings.Replace(fixedPath1, "/", string(os.PathSeparator), -1)
 
 	return fixedPath2
+}
+
+func (svc *FileHelper) CloseFile(f *os.File){
+	f.Close()
 }
