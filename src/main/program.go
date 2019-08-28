@@ -5,7 +5,8 @@ import (
 )
 
 func main(){
+
 	p := processor.NewProcessor()
-	p.PrintStudentAverages()
+	p.PrintStudentAverages("\\go\\src\\data\\grades.csv")
 }
 
